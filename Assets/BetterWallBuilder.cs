@@ -1,17 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BetterWallBuilder : MonoBehaviour
 {
     public GameObject wallBlock;
     public GameObject background;
     public GameObject backGroundWall;
+    //public GameObject MapTypeText;
+    public Text MapTypeText;
     private Vector2 neededSize = new Vector2(.5f, .5f);
     private int wallNumber;
     void Start()
     {
-        var mapType = Random.Range(0, 4);
+        var mapType = Random.Range(1, 6);
         //Debug.Log(mapType);
 
         switch (mapType)
@@ -29,8 +32,11 @@ public class BetterWallBuilder : MonoBehaviour
             case 4:
                 DenserMap();
                 break;
-            default:
+            case 5:
                 OpenMap();
+                break;
+            default:
+                Debug.Log("MAP ERROR");
                 break;
 
 
@@ -55,7 +61,8 @@ public class BetterWallBuilder : MonoBehaviour
             WallSelector();
 
         }
-        Debug.Log("Normal Map");
+        MapTypeText.text = "Normal";
+        //Debug.Log("Normal Map");
     }
 
     void SparseMap()
@@ -65,7 +72,8 @@ public class BetterWallBuilder : MonoBehaviour
         {
             WallSelector();
         }
-        Debug.Log("Sparse Map");
+        MapTypeText.text = "Sparse";
+        //Debug.Log("Sparse Map");
     }
     void DenseMap()
     {
@@ -74,7 +82,8 @@ public class BetterWallBuilder : MonoBehaviour
         {
             WallSelector();
         }
-        Debug.Log("Dense Map");
+        MapTypeText.text = "Dense";
+        //Debug.Log("Dense Map");
     }
     void DenserMap()
     {
@@ -83,7 +92,8 @@ public class BetterWallBuilder : MonoBehaviour
         {
             WallSelector();
         }
-        Debug.Log("Denser Map");
+        MapTypeText.text = "Denser";
+        //Debug.Log("Denser Map");
     }
 
     void OpenMap()
@@ -102,13 +112,14 @@ public class BetterWallBuilder : MonoBehaviour
 
         //}
         //}
-        Debug.Log("Open Map");
+        MapTypeText.text = "Open";
+        //Debug.Log("Open Map");
     }
 
     //Determines which style of wall will be attempted. 'Prefabs/Walls' has the models for the walls (though the prefabs themselves are not used).
     void WallSelector()
     {
-        var wallType = Mathf.Ceil(Random.Range(0, 11));
+        var wallType = Random.Range(1, 13);
         switch (wallType)
         {
             case 1:
@@ -144,8 +155,11 @@ public class BetterWallBuilder : MonoBehaviour
             case 11:
                 BuildStandingRightL();
                 break;
-            default:
+            case 12:
                 BuildBlock();
+                break;
+            default:
+                Debug.Log("BLOCK ERROR");
                 break;
 
         }
