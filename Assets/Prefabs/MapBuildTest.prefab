@@ -95,6 +95,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wallBlock: {fileID: 4623166381831787969, guid: 0be9a132817cfff40a5d2e654a7bae54, type: 3}
   background: {fileID: 1409889228803461996}
+  backGroundWall: {fileID: 3510955760650432017}
 --- !u!1001 &3502010924240807618
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -283,8 +284,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: BackGroundWall
       objectReference: {fileID: 0}
+    - target: {fileID: 9235658545147918, guid: a995abbbe38dd6c4bbd2fa6cde72f4dd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a995abbbe38dd6c4bbd2fa6cde72f4dd, type: 3}
+--- !u!1 &3510955760650432017 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9235658545147918, guid: a995abbbe38dd6c4bbd2fa6cde72f4dd, type: 3}
+  m_PrefabInstance: {fileID: 3502010925089005087}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3510955760650432018 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9235658545147917, guid: a995abbbe38dd6c4bbd2fa6cde72f4dd, type: 3}

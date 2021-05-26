@@ -6,11 +6,12 @@ public class BetterWallBuilder : MonoBehaviour
 {
     public GameObject wallBlock;
     public GameObject background;
+    public GameObject backGroundWall;
     private Vector2 neededSize = new Vector2(.5f, .5f);
     private int wallNumber;
     void Start()
     {
-        var mapType = Mathf.Ceil(Random.Range(0, 4));
+        var mapType = Random.Range(0, 4);
         //Debug.Log(mapType);
 
         switch (mapType)
@@ -34,12 +35,14 @@ public class BetterWallBuilder : MonoBehaviour
 
 
         }
+        backGroundWall.SetActive(true);
 
     }
 
     float GridValue()
     {
-        var value = (float)(Mathf.Ceil(Random.Range(-19, 19)) * .5);
+        //var value = (float)(Mathf.Ceil(Random.Range(-19, 19)) * .5);
+        var value = Mathf.Ceil(Random.Range(-9.5f, 8.5f));
         return value;
     }
 
@@ -49,13 +52,14 @@ public class BetterWallBuilder : MonoBehaviour
         while (wallNumber > 0)
         {
             WallSelector();
+
         }
         Debug.Log("Normal Map");
     }
 
     void SparseMap()
     {
-        wallNumber = 20;
+        wallNumber = 25;
         while (wallNumber > 0)
         {
             WallSelector();
@@ -64,7 +68,7 @@ public class BetterWallBuilder : MonoBehaviour
     }
     void DenseMap()
     {
-        wallNumber = 70;
+        wallNumber = 80;
         while (wallNumber > 0)
         {
             WallSelector();
@@ -73,7 +77,7 @@ public class BetterWallBuilder : MonoBehaviour
     }
     void DenserMap()
     {
-        wallNumber = 90;
+        wallNumber = 110;
         while (wallNumber > 0)
         {
             WallSelector();
