@@ -39,6 +39,7 @@ public class BetterWallBuilder : MonoBehaviour
 
     }
 
+    //Determines which grid point to try to build from. 'Range' values will need to be adjusted if the map size changes. 
     float GridValue()
     {
         //var value = (float)(Mathf.Ceil(Random.Range(-19, 19)) * .5);
@@ -104,6 +105,7 @@ public class BetterWallBuilder : MonoBehaviour
         Debug.Log("Open Map");
     }
 
+    //Determines which style of wall will be attempted. 'Prefabs/Walls' has the models for the walls (though the prefabs themselves are not used).
     void WallSelector()
     {
         var wallType = Mathf.Ceil(Random.Range(0, 11));
@@ -163,6 +165,7 @@ public class BetterWallBuilder : MonoBehaviour
         }
     }
 
+    //The methods below build the walls. Each individual potential block position is checked if it's clear before building the whole wall. After a wall is successfuly built, the number of blocks remaining (wallNumber) is decremented accordingly. 
     private void BuildStandingRightL()
     {
         var x = GridValue();
