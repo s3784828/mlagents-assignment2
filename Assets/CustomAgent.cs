@@ -10,10 +10,17 @@ public class CustomAgent : Agent
 {
     private Rigidbody2D rb;
     private Transform childSpriteTransform;
-    public Transform targetTransform;
-    public int numChecks;
-    public float velocityMultiplier = 10;
+    private int episodeCount;
 
+    [Header("Standard Attributes")]
+    public Transform targetTransform;
+    public float velocityMultiplier;
+
+    [Header("Distance observation")]
+    public float k;
+
+    [Header("Target Spawning Attributes")]
+    public int numChecks;
     /*
      * Starting range is normally set to 3, so a max spawn area of +3 x and -3 x, and +3 y and -3 y.
      * Refer to Tristan if that doesnt make sense. 
@@ -37,7 +44,7 @@ public class CustomAgent : Agent
     public float maxRange;
 
     private float range;
-    private int episodeCount;
+    
 
     private void Start()
     {
@@ -76,8 +83,19 @@ public class CustomAgent : Agent
     public override void CollectObservations(VectorSensor sensor)
     {
         // Target and Agent positions
-        sensor.AddObservation(targetTransform.localPosition);
-        sensor.AddObservation(transform.localPosition);
+        //sensor.AddObservation(targetTransform.localPosition);
+        //sensor.AddObservation(transform.localPosition);
+
+        //2
+        sensor.AddObservation((Vector2)(targetTransform.position - transform.position));
+
+        //2
+        sensor.AddObservation(GetObservableDistance());
+
+        //1
+        sensor.AddObservation(StepCount / MaxStep);
+
+        //5 observations
     }
 
     public override void OnActionReceived(ActionBuffers actionBuffers)
@@ -85,8 +103,6 @@ public class CustomAgent : Agent
         /*
          * it would be cool to experiment with continous actions.
          */
-
-
         Vector2 movementDirection = Vector2.zero;
 
         int movement = actionBuffers.DiscreteActions[0];
@@ -126,17 +142,41 @@ public class CustomAgent : Agent
         }
     }
 
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Target"))
+        {
+            AddReward(1.0f);
+            EndEpisode();
+        }
+    }
+
+    public Vector2 GetObservableDistance()
+    {
+        Vector2 offset = targetTransform.position - transform.position;
+        float d = Mathf.Sqrt(offset.x * offset.x + offset.y * offset.y);
+        Vector2 unitVector = (1 / d) * offset;
+        return Mathf.Exp(-k * d) * unitVector;
+    }
+
     public void ResetTargetPosition()
     {
-        targetTransform.localPosition = Vector2.zero;
         for (int i = 0; i < numChecks; i++)
         {
-            Vector3 possiblePosition = new Vector3(targetTransform.localPosition.x + Random.Range(-range, range), targetTransform.localPosition.y + Random.Range(-range, range), targetTransform.localPosition.z);
+            Vector2 possiblePosition = new Vector2(transform.position.x + Random.Range(-range, range), transform.position.y + Random.Range(-range, range));
 
-            if (!Physics2D.OverlapBox(possiblePosition, targetTransform.localScale, 0f))
+            Vector2 transformedPosition = new Vector2(transform.parent.position.x - possiblePosition.x, transform.parent.position.y - possiblePosition.y);
+
+            if (transformedPosition.x < range &&
+                transformedPosition.y < range &&
+                transformedPosition.x > -range &&
+                transformedPosition.y > -range)
             {
-                targetTransform.localPosition = possiblePosition;
-                break;
+                if (!Physics2D.OverlapBox(possiblePosition, new Vector2(1, 1), 0f))
+                {
+                    targetTransform.position = possiblePosition;
+                    break;
+                }
             }
         }
     }
