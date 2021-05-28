@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 687696457211470926, guid: 900ce0f3a4484614c9bd40930cc3c970, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.011912346
+      objectReference: {fileID: 0}
     - target: {fileID: 3502010924150077336, guid: 900ce0f3a4484614c9bd40930cc3c970, type: 3}
       propertyPath: m_Name
       value: MapBuildTest (3)
@@ -184,6 +188,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 900ce0f3a4484614c9bd40930cc3c970, type: 3}
+--- !u!4 &306966812 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8571931207253168534, guid: 900ce0f3a4484614c9bd40930cc3c970, type: 3}
+  m_PrefabInstance: {fileID: 577010757}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &577010757
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -191,6 +200,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 687696457211470926, guid: 900ce0f3a4484614c9bd40930cc3c970, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.011912346
+      objectReference: {fileID: 0}
     - target: {fileID: 3502010924150077336, guid: 900ce0f3a4484614c9bd40930cc3c970, type: 3}
       propertyPath: m_Name
       value: MapBuildTest
@@ -239,6 +252,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6674292740539419846, guid: 900ce0f3a4484614c9bd40930cc3c970, type: 3}
+      propertyPath: targetTransform
+      value: 
+      objectReference: {fileID: 306966812}
     - target: {fileID: 8290388987942718968, guid: 900ce0f3a4484614c9bd40930cc3c970, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -252,6 +269,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 687696457211470926, guid: 900ce0f3a4484614c9bd40930cc3c970, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.011912346
+      objectReference: {fileID: 0}
     - target: {fileID: 3502010924150077336, guid: 900ce0f3a4484614c9bd40930cc3c970, type: 3}
       propertyPath: m_Name
       value: MapBuildTest (4)
@@ -313,6 +334,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 687696457211470926, guid: 900ce0f3a4484614c9bd40930cc3c970, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.011912346
+      objectReference: {fileID: 0}
     - target: {fileID: 3502010924150077336, guid: 900ce0f3a4484614c9bd40930cc3c970, type: 3}
       propertyPath: m_Name
       value: MapBuildTest (5)
@@ -365,6 +390,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8571931207253168534, guid: 900ce0f3a4484614c9bd40930cc3c970, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.468
+      objectReference: {fileID: 0}
+    - target: {fileID: 8571931207253168534, guid: 900ce0f3a4484614c9bd40930cc3c970, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -5.845
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 900ce0f3a4484614c9bd40930cc3c970, type: 3}
 --- !u!1001 &1296280513
@@ -374,6 +407,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 687696457211470926, guid: 900ce0f3a4484614c9bd40930cc3c970, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.011912346
+      objectReference: {fileID: 0}
     - target: {fileID: 3502010924150077336, guid: 900ce0f3a4484614c9bd40930cc3c970, type: 3}
       propertyPath: m_Name
       value: MapBuildTest (1)
@@ -439,6 +476,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 687696457211470926, guid: 900ce0f3a4484614c9bd40930cc3c970, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.011912346
+      objectReference: {fileID: 0}
     - target: {fileID: 3502010924150077336, guid: 900ce0f3a4484614c9bd40930cc3c970, type: 3}
       propertyPath: m_Name
       value: MapBuildTest (2)
