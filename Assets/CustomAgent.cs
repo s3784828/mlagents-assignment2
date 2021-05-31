@@ -14,6 +14,8 @@ public class CustomAgent : Agent
     private int episodeCount;
     private bool completedEpisode;
 
+    public BetterWallBuilder wallBuilder;
+
     [Header("Standard Attributes")]
     public Transform targetTransform;
     public float velocityMultiplier;
@@ -93,6 +95,14 @@ public class CustomAgent : Agent
             }
         }
 
+        wallBuilder.TearDown();
+        //GameObject[] oldWalls = wallBuilder.GetComponentsInChildren<GameObject>();
+        //foreach (GameObject ow in oldWalls)
+        //{
+        //    Destroy(ow);
+        //}
+        wallBuilder.Build();
+        Debug.Log("Buildcalled");
         ResetTargetPosition();
     }
 

@@ -293,6 +293,10 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3401809865882184772, guid: a2a6dde3e147a3b48a10b8b3a931abb2, type: 3}
+      propertyPath: wallBuilder
+      value: 
+      objectReference: {fileID: 4451648227928253308}
+    - target: {fileID: 3401809865882184772, guid: a2a6dde3e147a3b48a10b8b3a931abb2, type: 3}
       propertyPath: targetTransform
       value: 
       objectReference: {fileID: 7822978238197271662}

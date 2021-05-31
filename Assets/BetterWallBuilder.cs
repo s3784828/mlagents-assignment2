@@ -12,8 +12,15 @@ public class BetterWallBuilder : MonoBehaviour
     public Text MapTypeText;
     private Vector2 neededSize = new Vector2(.5f, .5f);
     private int wallNumber;
-    void Start()
+    public void Build()
     {
+        //GameObject[] oldWalls = GameObject.FindGameObjectsWithTag("WallBlock");
+        //foreach(GameObject ow in oldWalls)
+        //{
+        //    Destroy(ow);
+        //}
+        //Debug.Log("Buildcalled");
+        backGroundWall.SetActive(false);
         var mapType = Random.Range(1, 6);
         //Debug.Log(mapType);
 
@@ -45,6 +52,22 @@ public class BetterWallBuilder : MonoBehaviour
 
     }
 
+    public void TearDown()
+    {
+        //Transform[] oldWalls = GetComponentsInChildren<Transform>();
+        //foreach (Transform ow in oldWalls)
+        //{
+        //    GameObject owgo = ow.gameObject.gameObject;
+        //    Destroy(owgo);
+        //}
+
+        foreach(Transform child in transform)
+        {
+            Destroy(child.gameObject);
+        }
+
+    }
+
     //Determines which grid point to try to build from. 'Range' values will need to be adjusted if the map size changes. 
     float GridValue()
     {
@@ -62,7 +85,7 @@ public class BetterWallBuilder : MonoBehaviour
 
         }
         MapTypeText.text = "Normal";
-        //Debug.Log("Normal Map");
+        Debug.Log("Normal Map");
     }
 
     void SparseMap()
@@ -73,7 +96,7 @@ public class BetterWallBuilder : MonoBehaviour
             WallSelector();
         }
         MapTypeText.text = "Sparse";
-        //Debug.Log("Sparse Map");
+        Debug.Log("Sparse Map");
     }
     void DenseMap()
     {
@@ -83,7 +106,7 @@ public class BetterWallBuilder : MonoBehaviour
             WallSelector();
         }
         MapTypeText.text = "Dense";
-        //Debug.Log("Dense Map");
+        Debug.Log("Dense Map");
     }
     void DenserMap()
     {
@@ -93,7 +116,7 @@ public class BetterWallBuilder : MonoBehaviour
             WallSelector();
         }
         MapTypeText.text = "Denser";
-        //Debug.Log("Denser Map");
+        Debug.Log("Denser Map");
     }
 
     void OpenMap()
@@ -113,7 +136,7 @@ public class BetterWallBuilder : MonoBehaviour
         //}
         //}
         MapTypeText.text = "Open";
-        //Debug.Log("Open Map");
+        Debug.Log("Open Map");
     }
 
     //Determines which style of wall will be attempted. 'Prefabs/Walls' has the models for the walls (though the prefabs themselves are not used).
@@ -173,7 +196,7 @@ public class BetterWallBuilder : MonoBehaviour
         var potentialPosition = new Vector3(x + background.transform.position.x, y + background.transform.position.y, z + background.transform.position.y);
         if (!Physics2D.OverlapBox(potentialPosition, neededSize, 0f))
         {
-            Instantiate(wallBlock, potentialPosition, Quaternion.identity);
+            Instantiate(wallBlock, potentialPosition, Quaternion.identity, transform);
             wallNumber--;
 
         }
@@ -191,10 +214,10 @@ public class BetterWallBuilder : MonoBehaviour
         var potentialPosition4 = new Vector3(x + background.transform.position.x, y + background.transform.position.y + 2, z + background.transform.position.y);
         if ((!Physics2D.OverlapBox(potentialPosition1, neededSize, 0f)) && (!Physics2D.OverlapBox(potentialPosition2, neededSize, 0f)) && (!Physics2D.OverlapBox(potentialPosition3, neededSize, 0f)) && (!Physics2D.OverlapBox(potentialPosition4, neededSize, 0f)))
         {
-            Instantiate(wallBlock, potentialPosition1, Quaternion.identity);
-            Instantiate(wallBlock, potentialPosition2, Quaternion.identity);
-            Instantiate(wallBlock, potentialPosition3, Quaternion.identity);
-            Instantiate(wallBlock, potentialPosition4, Quaternion.identity);
+            Instantiate(wallBlock, potentialPosition1, Quaternion.identity, transform);
+            Instantiate(wallBlock, potentialPosition2, Quaternion.identity, transform);
+            Instantiate(wallBlock, potentialPosition3, Quaternion.identity, transform);
+            Instantiate(wallBlock, potentialPosition4, Quaternion.identity, transform);
             wallNumber -= 4;
 
         }
@@ -211,10 +234,10 @@ public class BetterWallBuilder : MonoBehaviour
         var potentialPosition4 = new Vector3(x + background.transform.position.x, y + background.transform.position.y + 1, z + background.transform.position.y);
         if ((!Physics2D.OverlapBox(potentialPosition1, neededSize, 0f)) && (!Physics2D.OverlapBox(potentialPosition2, neededSize, 0f)) && (!Physics2D.OverlapBox(potentialPosition3, neededSize, 0f)) && (!Physics2D.OverlapBox(potentialPosition4, neededSize, 0f)))
         {
-            Instantiate(wallBlock, potentialPosition1, Quaternion.identity);
-            Instantiate(wallBlock, potentialPosition2, Quaternion.identity);
-            Instantiate(wallBlock, potentialPosition3, Quaternion.identity);
-            Instantiate(wallBlock, potentialPosition4, Quaternion.identity);
+            Instantiate(wallBlock, potentialPosition1, Quaternion.identity, transform);
+            Instantiate(wallBlock, potentialPosition2, Quaternion.identity, transform);
+            Instantiate(wallBlock, potentialPosition3, Quaternion.identity, transform);
+            Instantiate(wallBlock, potentialPosition4, Quaternion.identity, transform);
             wallNumber -= 4;
 
         }
@@ -231,10 +254,10 @@ public class BetterWallBuilder : MonoBehaviour
         var potentialPosition4 = new Vector3(x + background.transform.position.x - 2, y + background.transform.position.y, z + background.transform.position.y);
         if ((!Physics2D.OverlapBox(potentialPosition1, neededSize, 0f)) && (!Physics2D.OverlapBox(potentialPosition2, neededSize, 0f)) && (!Physics2D.OverlapBox(potentialPosition3, neededSize, 0f)) && (!Physics2D.OverlapBox(potentialPosition4, neededSize, 0f)))
         {
-            Instantiate(wallBlock, potentialPosition1, Quaternion.identity);
-            Instantiate(wallBlock, potentialPosition2, Quaternion.identity);
-            Instantiate(wallBlock, potentialPosition3, Quaternion.identity);
-            Instantiate(wallBlock, potentialPosition4, Quaternion.identity);
+            Instantiate(wallBlock, potentialPosition1, Quaternion.identity, transform);
+            Instantiate(wallBlock, potentialPosition2, Quaternion.identity, transform);
+            Instantiate(wallBlock, potentialPosition3, Quaternion.identity, transform);
+            Instantiate(wallBlock, potentialPosition4, Quaternion.identity, transform);
             wallNumber -= 4;
 
         }
@@ -251,10 +274,10 @@ public class BetterWallBuilder : MonoBehaviour
         var potentialPosition4 = new Vector3(x + background.transform.position.x + 2, y + background.transform.position.y, z + background.transform.position.y);
         if ((!Physics2D.OverlapBox(potentialPosition1, neededSize, 0f)) && (!Physics2D.OverlapBox(potentialPosition2, neededSize, 0f)) && (!Physics2D.OverlapBox(potentialPosition3, neededSize, 0f)) && (!Physics2D.OverlapBox(potentialPosition4, neededSize, 0f)))
         {
-            Instantiate(wallBlock, potentialPosition1, Quaternion.identity);
-            Instantiate(wallBlock, potentialPosition2, Quaternion.identity);
-            Instantiate(wallBlock, potentialPosition3, Quaternion.identity);
-            Instantiate(wallBlock, potentialPosition4, Quaternion.identity);
+            Instantiate(wallBlock, potentialPosition1, Quaternion.identity, transform);
+            Instantiate(wallBlock, potentialPosition2, Quaternion.identity, transform);
+            Instantiate(wallBlock, potentialPosition3, Quaternion.identity, transform);
+            Instantiate(wallBlock, potentialPosition4, Quaternion.identity, transform);
             wallNumber -= 4;
 
         }
@@ -272,11 +295,11 @@ public class BetterWallBuilder : MonoBehaviour
         var potentialPosition5 = new Vector3(x + background.transform.position.x, y + background.transform.position.y - 1, z + background.transform.position.y);
         if ((!Physics2D.OverlapBox(potentialPosition1, neededSize, 0f)) && (!Physics2D.OverlapBox(potentialPosition2, neededSize, 0f)) && (!Physics2D.OverlapBox(potentialPosition3, neededSize, 0f)) && (!Physics2D.OverlapBox(potentialPosition4, neededSize, 0f)) && (!Physics2D.OverlapBox(potentialPosition5, neededSize, 0f)))
         {
-            Instantiate(wallBlock, potentialPosition1, Quaternion.identity);
-            Instantiate(wallBlock, potentialPosition2, Quaternion.identity);
-            Instantiate(wallBlock, potentialPosition3, Quaternion.identity);
-            Instantiate(wallBlock, potentialPosition4, Quaternion.identity);
-            Instantiate(wallBlock, potentialPosition5, Quaternion.identity);
+            Instantiate(wallBlock, potentialPosition1, Quaternion.identity, transform);
+            Instantiate(wallBlock, potentialPosition2, Quaternion.identity, transform);
+            Instantiate(wallBlock, potentialPosition3, Quaternion.identity, transform);
+            Instantiate(wallBlock, potentialPosition4, Quaternion.identity, transform);
+            Instantiate(wallBlock, potentialPosition5, Quaternion.identity, transform);
             wallNumber -= 5;
 
         }
@@ -293,10 +316,10 @@ public class BetterWallBuilder : MonoBehaviour
         var potentialPosition4 = new Vector3(x + background.transform.position.x, y + background.transform.position.y - 2, z + background.transform.position.y);
         if ((!Physics2D.OverlapBox(potentialPosition1, neededSize, 0f)) && (!Physics2D.OverlapBox(potentialPosition2, neededSize, 0f)) && (!Physics2D.OverlapBox(potentialPosition3, neededSize, 0f)) && (!Physics2D.OverlapBox(potentialPosition4, neededSize, 0f)))
         {
-            Instantiate(wallBlock, potentialPosition1, Quaternion.identity);
-            Instantiate(wallBlock, potentialPosition2, Quaternion.identity);
-            Instantiate(wallBlock, potentialPosition3, Quaternion.identity);
-            Instantiate(wallBlock, potentialPosition4, Quaternion.identity);
+            Instantiate(wallBlock, potentialPosition1, Quaternion.identity, transform);
+            Instantiate(wallBlock, potentialPosition2, Quaternion.identity, transform);
+            Instantiate(wallBlock, potentialPosition3, Quaternion.identity, transform);
+            Instantiate(wallBlock, potentialPosition4, Quaternion.identity, transform);
             wallNumber -= 4;
 
         }
@@ -313,10 +336,10 @@ public class BetterWallBuilder : MonoBehaviour
         var potentialPosition4 = new Vector3(x + background.transform.position.x + 2, y + background.transform.position.y, z + background.transform.position.y);
         if ((!Physics2D.OverlapBox(potentialPosition1, neededSize, 0f)) && (!Physics2D.OverlapBox(potentialPosition2, neededSize, 0f)) && (!Physics2D.OverlapBox(potentialPosition3, neededSize, 0f)) && (!Physics2D.OverlapBox(potentialPosition4, neededSize, 0f)))
         {
-            Instantiate(wallBlock, potentialPosition1, Quaternion.identity);
-            Instantiate(wallBlock, potentialPosition2, Quaternion.identity);
-            Instantiate(wallBlock, potentialPosition3, Quaternion.identity);
-            Instantiate(wallBlock, potentialPosition4, Quaternion.identity);
+            Instantiate(wallBlock, potentialPosition1, Quaternion.identity, transform);
+            Instantiate(wallBlock, potentialPosition2, Quaternion.identity, transform);
+            Instantiate(wallBlock, potentialPosition3, Quaternion.identity, transform);
+            Instantiate(wallBlock, potentialPosition4, Quaternion.identity, transform);
             wallNumber -= 4;
 
         }
@@ -332,9 +355,9 @@ public class BetterWallBuilder : MonoBehaviour
         var potentialPosition3 = new Vector3(x + background.transform.position.x, y + background.transform.position.y - 1, z + background.transform.position.y);
         if ((!Physics2D.OverlapBox(potentialPosition1, neededSize, 0f)) && (!Physics2D.OverlapBox(potentialPosition2, neededSize, 0f)) && (!Physics2D.OverlapBox(potentialPosition3, neededSize, 0f)))
         {
-            Instantiate(wallBlock, potentialPosition1, Quaternion.identity);
-            Instantiate(wallBlock, potentialPosition2, Quaternion.identity);
-            Instantiate(wallBlock, potentialPosition3, Quaternion.identity);
+            Instantiate(wallBlock, potentialPosition1, Quaternion.identity, transform);
+            Instantiate(wallBlock, potentialPosition2, Quaternion.identity, transform);
+            Instantiate(wallBlock, potentialPosition3, Quaternion.identity, transform);
             wallNumber -= 3;
 
         }
@@ -350,9 +373,9 @@ public class BetterWallBuilder : MonoBehaviour
         var potentialPosition3 = new Vector3(x + background.transform.position.x -1, y + background.transform.position.y, z + background.transform.position.y);
         if ((!Physics2D.OverlapBox(potentialPosition1, neededSize, 0f)) && (!Physics2D.OverlapBox(potentialPosition2, neededSize, 0f)) && (!Physics2D.OverlapBox(potentialPosition3, neededSize, 0f)))
         {
-            Instantiate(wallBlock, potentialPosition1, Quaternion.identity);
-            Instantiate(wallBlock, potentialPosition2, Quaternion.identity);
-            Instantiate(wallBlock, potentialPosition3, Quaternion.identity);
+            Instantiate(wallBlock, potentialPosition1, Quaternion.identity, transform);
+            Instantiate(wallBlock, potentialPosition2, Quaternion.identity, transform);
+            Instantiate(wallBlock, potentialPosition3, Quaternion.identity, transform);
             wallNumber -= 3;
 
         }
@@ -367,8 +390,8 @@ public class BetterWallBuilder : MonoBehaviour
         var potentialPosition2 = new Vector3(x + background.transform.position.x, y + background.transform.position.y + 1, z + background.transform.position.y);
         if ((!Physics2D.OverlapBox(potentialPosition1, neededSize, 0f)) && (!Physics2D.OverlapBox(potentialPosition2, neededSize, 0f)))
         {
-            Instantiate(wallBlock, potentialPosition1, Quaternion.identity);
-            Instantiate(wallBlock, potentialPosition2, Quaternion.identity);
+            Instantiate(wallBlock, potentialPosition1, Quaternion.identity, transform);
+            Instantiate(wallBlock, potentialPosition2, Quaternion.identity, transform);
             wallNumber -= 2;
 
         }
@@ -383,8 +406,8 @@ public class BetterWallBuilder : MonoBehaviour
         var potentialPosition2 = new Vector3(x + background.transform.position.x + 1, y + background.transform.position.y, z + background.transform.position.y);
         if ((!Physics2D.OverlapBox(potentialPosition1, neededSize, 0f)) && (!Physics2D.OverlapBox(potentialPosition2, neededSize, 0f)))
         {
-            Instantiate(wallBlock, potentialPosition1, Quaternion.identity);
-            Instantiate(wallBlock, potentialPosition2, Quaternion.identity);
+            Instantiate(wallBlock, potentialPosition1, Quaternion.identity, transform);
+            Instantiate(wallBlock, potentialPosition2, Quaternion.identity, transform);
             wallNumber -= 2;
 
         }

@@ -8,6 +8,7 @@ TagManager:
   - BackgroundWall
   - Wall
   - Torpedo
+  - WallBlock
   layers:
   - Default
   - TransparentFX
