@@ -55,7 +55,8 @@ public class CustomAgent : Agent
     private string dataHeadings = "episode,successRate,timeRemaining";
     //successRate key: S = success, T = agent timed out
 
-
+    public int checksTillIncreaseTempRange = 5;
+    public float tempRangeIncrease = .25f;
 
     private void Start()
     {
@@ -205,21 +206,34 @@ public class CustomAgent : Agent
 
     public void ResetTargetPosition()
     {
+        float tempRange = range;
+        int failedCheckCounter = 0;
+
         for (int i = 0; i < numChecks; i++)
         {
-            Vector2 possiblePosition = new Vector2(transform.position.x + Random.Range(-range, range), transform.position.y + Random.Range(-range, range));
+            Vector2 possiblePosition = new Vector2(transform.position.x + Random.Range(-tempRange, tempRange), transform.position.y + Random.Range(-tempRange, tempRange));
 
             Vector2 transformedPosition = new Vector2(transform.parent.position.x - possiblePosition.x, transform.parent.position.y - possiblePosition.y);
 
-            if (transformedPosition.x < range &&
-                transformedPosition.y < range &&
-                transformedPosition.x > -range &&
-                transformedPosition.y > -range)
+            if (transformedPosition.x < maxRange &&
+                transformedPosition.y < maxRange &&
+                transformedPosition.x > -maxRange &&
+                transformedPosition.y > -maxRange)
             {
                 if (!Physics2D.OverlapBox(possiblePosition, new Vector2(1, 1), 0f))
                 {
                     targetTransform.position = possiblePosition;
                     break;
+                }
+            }
+            else
+            {
+                failedCheckCounter += 1;
+
+                if (failedCheckCounter >= checksTillIncreaseTempRange)
+                {
+                    failedCheckCounter = 0;
+                    tempRange += tempRangeIncrease;
                 }
             }
         }

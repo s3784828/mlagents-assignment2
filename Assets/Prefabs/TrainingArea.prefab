@@ -1390,7 +1390,7 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 5022602860645237092, guid: eb84923b95fdd0044b07f2c88b7a6faa, type: 3}
+  m_Model: {fileID: 5022602860645237092, guid: 98cf610ed69ed8d4ba5fa1c50c89b44b, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 2
   m_BehaviorName: CustomAgent
@@ -1414,13 +1414,17 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
+  wallBuilder: {fileID: 0}
   targetTransform: {fileID: 3232160711008849315}
-  numChecks: 25
   velocityMultiplier: 300
+  k: 0
+  numChecks: 25
   startingRange: 3
   rangeIncrement: 0.05
   episodesTillRangeIncrement: 100
   maxRange: 10
+  checksTillIncreaseTempRange: 5
+  tempRangeIncrease: 0.25
 --- !u!114 &3232160710197670482
 MonoBehaviour:
   m_ObjectHideFlags: 0

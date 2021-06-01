@@ -288,6 +288,10 @@ PrefabInstance:
       propertyPath: m_Radius
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: 3401809865882184771, guid: a2a6dde3e147a3b48a10b8b3a931abb2, type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 5022602860645237092, guid: 98cf610ed69ed8d4ba5fa1c50c89b44b, type: 3}
     - target: {fileID: 3401809865882184772, guid: a2a6dde3e147a3b48a10b8b3a931abb2, type: 3}
       propertyPath: maxRange
       value: 10
