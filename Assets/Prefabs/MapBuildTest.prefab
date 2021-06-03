@@ -214,7 +214,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: No Map Info
+  m_Text: Normal
 --- !u!1 &6985101955050862782
 GameObject:
   m_ObjectHideFlags: 0
@@ -291,7 +291,7 @@ PrefabInstance:
     - target: {fileID: 3401809865882184771, guid: a2a6dde3e147a3b48a10b8b3a931abb2, type: 3}
       propertyPath: m_Model
       value: 
-      objectReference: {fileID: 5022602860645237092, guid: 98cf610ed69ed8d4ba5fa1c50c89b44b, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 3401809865882184772, guid: a2a6dde3e147a3b48a10b8b3a931abb2, type: 3}
       propertyPath: maxRange
       value: 10
@@ -300,6 +300,10 @@ PrefabInstance:
       propertyPath: wallBuilder
       value: 
       objectReference: {fileID: 4451648227928253308}
+    - target: {fileID: 3401809865882184772, guid: a2a6dde3e147a3b48a10b8b3a931abb2, type: 3}
+      propertyPath: startingRange
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3401809865882184772, guid: a2a6dde3e147a3b48a10b8b3a931abb2, type: 3}
       propertyPath: targetTransform
       value: 
@@ -483,7 +487,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9235658545147918, guid: a995abbbe38dd6c4bbd2fa6cde72f4dd, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a995abbbe38dd6c4bbd2fa6cde72f4dd, type: 3}
