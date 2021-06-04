@@ -1,0 +1,38 @@
+{
+    "CustomSlowSeeker": {
+        "checkpoints": [
+            {
+                "steps": 499984,
+                "file_path": "results\\slowSeekerAgent03\\CustomSlowSeeker\\CustomSlowSeeker-499984.onnx",
+                "reward": 0.6155172463121086,
+                "creation_time": 1622599989.1654403,
+                "auxillary_file_paths": [
+                    "results\\slowSeekerAgent03\\CustomSlowSeeker\\CustomSlowSeeker-499984.pt"
+                ]
+            },
+            {
+                "steps": 500005,
+                "file_path": "results\\slowSeekerAgent03\\CustomSlowSeeker\\CustomSlowSeeker-500005.onnx",
+                "reward": 0.6200000047683716,
+                "creation_time": 1622599989.29344,
+                "auxillary_file_paths": [
+                    "results\\slowSeekerAgent03\\CustomSlowSeeker\\CustomSlowSeeker-500005.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 500005,
+            "file_path": "results\\slowSeekerAgent03\\CustomSlowSeeker.onnx",
+            "reward": 0.6200000047683716,
+            "creation_time": 1622599989.29344,
+            "auxillary_file_paths": [
+                "results\\slowSeekerAgent03\\CustomSlowSeeker\\CustomSlowSeeker-500005.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.26.0",
+        "torch_version": "1.7.1+cu110"
+    }
+}

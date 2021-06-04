@@ -1,0 +1,47 @@
+{
+    "CustomAgent": {
+        "checkpoints": [
+            {
+                "steps": 64,
+                "file_path": "results\\10x10_standard_agent_no_assistance\\CustomAgent\\CustomAgent-64.onnx",
+                "reward": null,
+                "creation_time": 1622518034.4685113,
+                "auxillary_file_paths": [
+                    "results\\10x10_standard_agent_no_assistance\\CustomAgent\\CustomAgent-64.pt"
+                ]
+            },
+            {
+                "steps": 81256,
+                "file_path": "results\\10x10_standard_agent_no_assistance\\CustomAgent\\CustomAgent-81256.onnx",
+                "reward": 1.0,
+                "creation_time": 1622518489.0011148,
+                "auxillary_file_paths": [
+                    "results\\10x10_standard_agent_no_assistance\\CustomAgent\\CustomAgent-81256.pt"
+                ]
+            },
+            {
+                "steps": 250011,
+                "file_path": "results\\10x10_standard_agent_no_assistance\\CustomAgent\\CustomAgent-250011.onnx",
+                "reward": 1.0,
+                "creation_time": 1622519602.340171,
+                "auxillary_file_paths": [
+                    "results\\10x10_standard_agent_no_assistance\\CustomAgent\\CustomAgent-250011.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 250011,
+            "file_path": "results\\10x10_standard_agent_no_assistance\\CustomAgent.onnx",
+            "reward": 1.0,
+            "creation_time": 1622519602.340171,
+            "auxillary_file_paths": [
+                "results\\10x10_standard_agent_no_assistance\\CustomAgent\\CustomAgent-250011.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.26.0",
+        "torch_version": "1.7.1+cu110"
+    }
+}

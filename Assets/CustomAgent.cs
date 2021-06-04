@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 using Unity.MLAgents;
 using Unity.MLAgents.Sensors;
@@ -11,6 +12,7 @@ public class CustomAgent : Agent
     private Rigidbody2D rb;
     private Transform childSpriteTransform;
     private int episodeCount;
+    private bool completedEpisode;
 
     [Header("Standard Attributes")]
     public Transform targetTransform;
@@ -20,6 +22,10 @@ public class CustomAgent : Agent
     public float k;
 
     [Header("Target Spawning Attributes")]
+
+    public float tempRangeIncrease;
+    public int checksTillIncreaseTempRange;
+
     public int numChecks;
     /*
      * Starting range is normally set to 3, so a max spawn area of +3 x and -3 x, and +3 y and -3 y.
@@ -44,7 +50,14 @@ public class CustomAgent : Agent
     public float maxRange;
 
     private float range;
-    
+
+    //For logging data. Set dataHeadings to whatever you want to record.
+    //Make sure to update any values you pass to SaveResults if you change these.
+    private static readonly string outputFile = Directory.GetCurrentDirectory() + "/StandardAgentObservations/obs3.csv";
+    private string dataHeadings = "episode,successRate,timeRemaining";
+    //successRate key: S = success, T = agent timed out
+
+
 
     private void Start()
     {
@@ -53,10 +66,22 @@ public class CustomAgent : Agent
         episodeCount = 0;
         rb = GetComponent<Rigidbody2D>();
         rb.angularVelocity = 0f;
+
+        SaveResults("");
+        SaveResults(dataHeadings);
     }
 
     public override void OnEpisodeBegin()
     {
+        //checks if the target timed out last time, and records it if true
+        if (!completedEpisode)
+        {
+            Debug.Log($"{episodeCount},T,{(MaxStep - StepCount)}");
+            SaveResults($"{episodeCount},T,{(MaxStep - StepCount)}");
+        }
+
+        
+
         /*
          * So essentially, each time the agent reaches a goal this will increase the episode count,
          * if then agent reaches the goal enough, the goal will be able to spawn into a larger radius around the map,
@@ -133,11 +158,21 @@ public class CustomAgent : Agent
 
     }
 
+    public void SaveResults(string observation)
+    {
+        var file = new StreamWriter(outputFile, append: true);
+        file.WriteLine(observation);
+        file.Close();
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Target"))
         {
             AddReward(1.0f);
+            Debug.Log($"{episodeCount},S,{(MaxStep - StepCount)}");
+            SaveResults($"{episodeCount},S,{(MaxStep - StepCount)}");
+            completedEpisode = true;
             EndEpisode();
         }
     }
@@ -147,6 +182,21 @@ public class CustomAgent : Agent
         if (collision.gameObject.CompareTag("Target"))
         {
             AddReward(1.0f);
+            Debug.Log($"{episodeCount},S,{(MaxStep - StepCount)}");
+            SaveResults($"{episodeCount},S,{(MaxStep - StepCount)}");
+            completedEpisode = true;
+            EndEpisode();
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Target"))
+        {
+            AddReward(1.0f);
+            Debug.Log($"{episodeCount},S,{(MaxStep - StepCount)}");
+            SaveResults($"{episodeCount},S,{(MaxStep - StepCount)}");
+            completedEpisode = true;
             EndEpisode();
         }
     }
@@ -161,16 +211,19 @@ public class CustomAgent : Agent
 
     public void ResetTargetPosition()
     {
+        float tempRange = range;
+        int failedCheckCounter = 0;
+
         for (int i = 0; i < numChecks; i++)
         {
-            Vector2 possiblePosition = new Vector2(transform.position.x + Random.Range(-range, range), transform.position.y + Random.Range(-range, range));
+            Vector2 possiblePosition = new Vector2(transform.position.x + Random.Range(-tempRange, tempRange), transform.position.y + Random.Range(-tempRange, tempRange));
 
             Vector2 transformedPosition = new Vector2(transform.parent.position.x - possiblePosition.x, transform.parent.position.y - possiblePosition.y);
 
-            if (transformedPosition.x < range &&
-                transformedPosition.y < range &&
-                transformedPosition.x > -range &&
-                transformedPosition.y > -range)
+            if (transformedPosition.x < maxRange &&
+                transformedPosition.y < maxRange &&
+                transformedPosition.x > -maxRange &&
+                transformedPosition.y > -maxRange)
             {
                 if (!Physics2D.OverlapBox(possiblePosition, new Vector2(1, 1), 0f))
                 {
@@ -178,6 +231,17 @@ public class CustomAgent : Agent
                     break;
                 }
             }
+            else
+            {
+                failedCheckCounter += 1;
+
+                if (failedCheckCounter >= checksTillIncreaseTempRange)
+                {
+                    failedCheckCounter = 0;
+                    tempRange += tempRangeIncrease;
+                }
+            }
+
         }
     }
 }
