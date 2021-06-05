@@ -207,7 +207,7 @@ public class CustomAgentSmart : Agent
         //1
         sensor.AddObservation(StepCount / MaxStep);
 
-        //17 observations
+        //5 + length of list * 6 observations
     }
 
     public override void OnActionReceived(ActionBuffers actionBuffers)
