@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+//This is an old version of the wall builder. Not used in formal training or testing.
 public class WallBuilder : MonoBehaviour
 {
     public GameObject wallBlock;
@@ -10,11 +12,10 @@ public class WallBuilder : MonoBehaviour
     void Start()
     {
         var mapType = Mathf.Ceil(Random.Range(0, 4));
-        //Debug.Log(mapType);
 
-        switch(mapType){
+        switch (mapType)
+        {
             case 1:
-                //Debug.Log("Calling Normal");
                 NormalMap();
                 break;
             case 2:
@@ -50,11 +51,11 @@ public class WallBuilder : MonoBehaviour
             var y = GridValue();
             var z = 0;
             var potentialPosition = new Vector3(x + background.transform.position.x, y + background.transform.position.y, z + background.transform.position.y);
-            if (!Physics2D.OverlapBox(potentialPosition,neededSize, 0f))
+            if (!Physics2D.OverlapBox(potentialPosition, neededSize, 0f))
             {
-            Instantiate(wallBlock, potentialPosition, Quaternion.identity);
-            wallNumber--;
-                
+                Instantiate(wallBlock, potentialPosition, Quaternion.identity);
+                wallNumber--;
+
             }
         }
         Debug.Log("Normal Map");
@@ -117,20 +118,7 @@ public class WallBuilder : MonoBehaviour
 
     void OpenMap()
     {
-        //int wallNumber = 0;
-        //while (wallNumber > 0)
-        //{
-        //    var x = GridValue();
-        //    var y = GridValue();
-        //    var z = 0;
-        //var potentialPosition = new Vector3(x + background.transform.position.x, y + background.transform.position.y, z + background.transform.position.y);
-        //if (!Physics2D.OverlapBox(potentialPosition, neededSize, 0f))
-        //{
-        //    Instantiate(wall, potentialPosition, Quaternion.identity);
-        //    wallNumber--;
 
-        //}
-        //}
         Debug.Log("Open Map");
     }
 

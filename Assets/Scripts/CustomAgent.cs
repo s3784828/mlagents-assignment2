@@ -20,6 +20,7 @@ public class CustomAgent : Agent
     public Text TargetsReached;
     public Text TargetsAtFinish;
     private int targetsGot = 0;
+    //Sets a ten minute limit
     private float timeRemaining = 600;
     private bool timerRunning = true;
 
@@ -83,15 +84,17 @@ public class CustomAgent : Agent
         timerRunning = true;
 
 
-        //For wall building on random training maps
+        //Activate for wall building on random training maps
         //wallBuilder.Build();
     }
 
+
     private void Update()
     {
-        if(timerRunning)
+        //Provides testing score update
+        if (timerRunning)
         {
-            if(timeRemaining > 0)
+            if (timeRemaining > 0)
             {
                 timeRemaining -= Time.deltaTime;
             }
@@ -109,8 +112,6 @@ public class CustomAgent : Agent
 
     public override void OnEpisodeBegin()
     {
-        //targetsGot = targetsGot++;
-        //TargetsReached.text = "Targets Reached: " + targetsGot;
 
         //checks if the target timed out last time, and records it if true
         if (!completedEpisode)
@@ -119,7 +120,7 @@ public class CustomAgent : Agent
             SaveResults($"{episodeCount},T,{(MaxStep - StepCount)}");
         }
 
-        
+
 
         /*
          * So essentially, each time the agent reaches a goal this will increase the episode count,
@@ -217,7 +218,6 @@ public class CustomAgent : Agent
             Debug.Log($"{episodeCount},S,{(MaxStep - StepCount)}");
             SaveResults($"{episodeCount},S,{(MaxStep - StepCount)}");
             completedEpisode = true;
-            //TargetsReached.text = "Targets Reached: " + ++targetsGot;
             EndEpisode();
         }
     }
@@ -230,7 +230,6 @@ public class CustomAgent : Agent
             Debug.Log($"{episodeCount},S,{(MaxStep - StepCount)}");
             SaveResults($"{episodeCount},S,{(MaxStep - StepCount)}");
             completedEpisode = true;
-            //TargetsReached.text = "Targets Reached: " + ++targetsGot;
             EndEpisode();
         }
     }
@@ -260,7 +259,7 @@ public class CustomAgent : Agent
         float tempRange = range;
         int failedCheckCounter = 0;
 
-        
+
 
         for (int i = 0; i < numChecks; i++)
         {

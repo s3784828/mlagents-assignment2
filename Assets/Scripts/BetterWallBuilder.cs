@@ -8,7 +8,6 @@ public class BetterWallBuilder : MonoBehaviour
     public GameObject wallBlock;
     public GameObject background;
     public GameObject backGroundWall;
-    //public GameObject MapTypeText;
     public Text MapTypeText;
     private Vector2 neededSize = new Vector2(.5f, .5f);
     private int wallNumber;
@@ -35,7 +34,6 @@ public class BetterWallBuilder : MonoBehaviour
         switch (mapType)
         {
             case 1:
-                //Debug.Log("Calling Normal");
                 NormalMap();
                 break;
             case 2:
@@ -62,14 +60,8 @@ public class BetterWallBuilder : MonoBehaviour
 
     public void TearDown()
     {
-        //Transform[] oldWalls = GetComponentsInChildren<Transform>();
-        //foreach (Transform ow in oldWalls)
-        //{
-        //    GameObject owgo = ow.gameObject.gameObject;
-        //    Destroy(owgo);
-        //}
 
-        foreach(Transform child in transform)
+        foreach (Transform child in transform)
         {
             Destroy(child.gameObject);
         }
@@ -79,7 +71,6 @@ public class BetterWallBuilder : MonoBehaviour
     //Determines which grid point to try to build from. 'Range' values will need to be adjusted if the map size changes. 
     float GridValue()
     {
-        //var value = (float)(Mathf.Ceil(Random.Range(-19, 19)) * .5);
         var value = Mathf.Ceil(Random.Range(-9.5f, 8.5f));
         return value;
     }
@@ -129,25 +120,12 @@ public class BetterWallBuilder : MonoBehaviour
 
     void OpenMap()
     {
-        //wallNumber = 0;
-        //while (wallNumber > 0)
-        //{
-        //    var x = GridValue();
-        //    var y = GridValue();
-        //    var z = 0;
-        //var potentialPosition = new Vector3(x + background.transform.position.x, y + background.transform.position.y, z + background.transform.position.y);
-        //if (!Physics2D.OverlapBox(potentialPosition, neededSize, 0f))
-        //{
-        //    Instantiate(wall, potentialPosition, Quaternion.identity);
-        //    wallNumber--;
 
-        //}
-        //}
         MapTypeText.text = "Open";
         Debug.Log("Open Map");
     }
 
-    //Determines which style of wall will be attempted. 'Prefabs/Walls' has the models for the walls (though the prefabs themselves are not used).
+    //Determines which style of wall will be attempted. 'Prefabs/Walls' has the models for the walls (though the prefabs themselves are not used in building).
     void WallSelector()
     {
         var wallType = Random.Range(1, 13);
@@ -378,7 +356,7 @@ public class BetterWallBuilder : MonoBehaviour
         var z = 0;
         var potentialPosition1 = new Vector3(x + background.transform.position.x, y + background.transform.position.y, z + background.transform.position.y);
         var potentialPosition2 = new Vector3(x + background.transform.position.x + 1, y + background.transform.position.y, z + background.transform.position.y);
-        var potentialPosition3 = new Vector3(x + background.transform.position.x -1, y + background.transform.position.y, z + background.transform.position.y);
+        var potentialPosition3 = new Vector3(x + background.transform.position.x - 1, y + background.transform.position.y, z + background.transform.position.y);
         if ((!Physics2D.OverlapBox(potentialPosition1, neededSize, 0f)) && (!Physics2D.OverlapBox(potentialPosition2, neededSize, 0f)) && (!Physics2D.OverlapBox(potentialPosition3, neededSize, 0f)))
         {
             Instantiate(wallBlock, potentialPosition1, Quaternion.identity, transform);
