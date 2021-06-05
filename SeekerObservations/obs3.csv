@@ -147,3 +147,22 @@ episode,successRate,timeRemaining,agentSuccessCount
 
 episode,successRate,timeRemaining,agentSuccessCount
 0,T,5000,0
+
+episode,successRate,timeRemaining,agentSuccessCount
+0,T,5000,0
+
+episode,successRate,timeRemaining,agentSuccessCount
+0,T,5000,0
+1,T,5000,0
+
+episode,successRate,timeRemaining,agentSuccessCount
+0,T,5000,0
+1,S,4382,8
+2,S,4960,0
+3,S,4963,0
+4,S,4931,0
+5,S,4942,0
+6,S,4641,6
+
+episode,successRate,timeRemaining,agentSuccessCount
+0,T,5000,0

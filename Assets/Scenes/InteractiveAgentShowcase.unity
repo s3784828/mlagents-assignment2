@@ -455,7 +455,7 @@ MonoBehaviour:
   tempRangeIncrease: 0.25
   checksTillIncreaseTempRange: 5
   numChecks: 250
-  startingRange: 2
+  startingRange: 20
   rangeIncrement: 0.25
   episodesTillRangeIncrement: 100
   maxRange: 20
