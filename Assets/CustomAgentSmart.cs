@@ -23,6 +23,7 @@ public class CustomAgentSmart : Agent
 
     [Header("Standard Attributes")]
     public Transform targetTransform;
+    public bool usingInteractiveSeekers = false;
 
     [Header("Seeker Attributes")]
     public List<GameObject> seekers;
@@ -84,7 +85,8 @@ public class CustomAgentSmart : Agent
     {
         foreach (GameObject seeker in seekers)
         {
-            seeker.SetActive(false);
+            if (!usingInteractiveSeekers)
+                seeker.SetActive(false);
         }
 
         prevPositions = new Vector2[seekers.Count];
@@ -141,6 +143,8 @@ public class CustomAgentSmart : Agent
                 }
             }
         }
+
+        
 
         if (episodeCount >= episodesTillStopSpawningTarget)
         {
