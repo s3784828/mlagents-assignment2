@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using UnityEngine.UI;
 
 using Unity.MLAgents;
 using Unity.MLAgents.Sensors;
@@ -13,6 +14,15 @@ public class CustomAgent : Agent
     private Transform childSpriteTransform;
     private int episodeCount;
     private bool completedEpisode;
+
+    //Variables for score keeping and timer
+    //@REF: https://gamedevbeginner.com/how-to-make-countdown-timer-in-unity-minutes-seconds/
+    public Text TargetsReached;
+    public Text TargetsAtFinish;
+    private int targetsGot = 0;
+    private float timeRemaining = 600;
+    private bool timerRunning = true;
+
 
     public BetterWallBuilder wallBuilder;
 
@@ -69,11 +79,39 @@ public class CustomAgent : Agent
         SaveResults("");
         SaveResults(dataHeadings);
 
+        //Timer related
+        timerRunning = true;
+
+
+        //For wall building on random training maps
         //wallBuilder.Build();
+    }
+
+    private void Update()
+    {
+        if(timerRunning)
+        {
+            if(timeRemaining > 0)
+            {
+                timeRemaining -= Time.deltaTime;
+            }
+
+            else
+            {
+                Debug.Log("Time Finished");
+                timeRemaining = 0;
+                timerRunning = false;
+                TargetsAtFinish.text = "Targets At Finish: " + targetsGot;
+
+            }
+        }
     }
 
     public override void OnEpisodeBegin()
     {
+        //targetsGot = targetsGot++;
+        //TargetsReached.text = "Targets Reached: " + targetsGot;
+
         //checks if the target timed out last time, and records it if true
         if (!completedEpisode)
         {
@@ -99,9 +137,9 @@ public class CustomAgent : Agent
         }
 
         //Disable these the stop random map generation. Enable Build() in Start(). Also see commments in Build()
-        wallBuilder.TearDown();
-        wallBuilder.Build();
-        Debug.Log("Buildcalled");
+        //wallBuilder.TearDown();
+        //wallBuilder.Build();
+        //Debug.Log("Buildcalled");
 
         ResetTargetPosition();
     }
@@ -179,6 +217,7 @@ public class CustomAgent : Agent
             Debug.Log($"{episodeCount},S,{(MaxStep - StepCount)}");
             SaveResults($"{episodeCount},S,{(MaxStep - StepCount)}");
             completedEpisode = true;
+            //TargetsReached.text = "Targets Reached: " + ++targetsGot;
             EndEpisode();
         }
     }
@@ -191,6 +230,7 @@ public class CustomAgent : Agent
             Debug.Log($"{episodeCount},S,{(MaxStep - StepCount)}");
             SaveResults($"{episodeCount},S,{(MaxStep - StepCount)}");
             completedEpisode = true;
+            //TargetsReached.text = "Targets Reached: " + ++targetsGot;
             EndEpisode();
         }
     }
@@ -202,6 +242,7 @@ public class CustomAgent : Agent
             Debug.Log($"{episodeCount},S,{(MaxStep - StepCount)}");
             SaveResults($"{episodeCount},S,{(MaxStep - StepCount)}");
             completedEpisode = true;
+            TargetsReached.text = "Targets Reached: " + ++targetsGot;
             EndEpisode();
         }
     }
@@ -218,6 +259,8 @@ public class CustomAgent : Agent
     {
         float tempRange = range;
         int failedCheckCounter = 0;
+
+        
 
         for (int i = 0; i < numChecks; i++)
         {

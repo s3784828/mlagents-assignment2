@@ -25,10 +25,10 @@ public class BetterWallBuilder : MonoBehaviour
 
         //var mapType = Random.Range(1, 6); //random map
         //var mapType = 1; //all normal
-        var mapType = 2; //all sparse
+        //var mapType = 2; //all sparse
         //var mapType = 3; //all dense
         //var mapType = 4; //all denser
-        //var mapType = 5; //all open
+        var mapType = 5; //all open
 
         //Debug.Log(mapType);
 
